@@ -3,6 +3,7 @@ class Aerotab < Formula
   homepage "https://github.com/axklim/aerotab"
   url "https://github.com/axklim/aerotab/archive/refs/tags/v1.0.1.tar.gz"
   sha256 "5377ef6e4a5c9e9af7dda9c6e4a7233c24f486f172ca574015fa20887e013f92"
+  license "MIT"
   head "https://github.com/axklim/aerotab.git", branch: "main"
 
   depends_on :macos
