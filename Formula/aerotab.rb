@@ -36,8 +36,17 @@ class Aerotab < Formula
       in System Settings > Privacy & Security > Accessibility. Without it no
       event tap is installed and Cmd-Tab keeps its native behaviour.
 
-      The bundle is signed ad-hoc, so its code hash changes on every upgrade and
-      macOS forgets the grant. Re-approve AeroTab after upgrading.
+      The bundle is signed ad-hoc, so its code hash changes on every
+      upgrade, while the stored grant stays bound to the old hash. The
+      result is silent: AeroTab still shows as enabled in System
+      Settings, but no event tap is installed and Cmd-Tab reverts to the
+      native switcher. Toggling the switch off and on does not rewrite
+      the stored requirement. After every upgrade run
+
+        tccutil reset Accessibility com.axklim.aerotab
+        brew services restart aerotab
+
+      and approve the prompt.
     EOS
   end
 
