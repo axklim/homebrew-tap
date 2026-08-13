@@ -1,8 +1,8 @@
 class Aerotab < Formula
   desc "Cmd-Tab switcher that never causes an AeroSpace workspace jump"
   homepage "https://github.com/axklim/aerotab"
-  url "https://github.com/axklim/aerotab/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "5377ef6e4a5c9e9af7dda9c6e4a7233c24f486f172ca574015fa20887e013f92"
+  url "https://github.com/axklim/aerotab/archive/refs/tags/v0.1.0.tar.gz"
+  sha256 "8069044d72e9fc58187fe739d3f0013a800e561bbb99fe807e345eca96c461b3"
   license "MIT"
   head "https://github.com/axklim/aerotab.git", branch: "main"
 
