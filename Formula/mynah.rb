@@ -8,7 +8,7 @@ class Mynah < Formula
   # The URL points at a release asset, not a tag tarball, so Homebrew cannot derive
   # the version. The release workflow in axklim/mynah rewrites all three lines together.
   version "0.3.0"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "074255becbfdd514a302304aaee1a70af8c2199499177fa685148437b6d30d6b"
 
   # Both artifacts are prebuilt by CI on an Apple silicon runner: the app half needs
   # full Xcode to compile at all (a dependency uses #Preview, whose macro plugin ships
