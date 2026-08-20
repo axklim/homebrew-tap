@@ -4,9 +4,12 @@
 class Workenv < Formula
   desc "Open a task's git worktree, tmux session and terminal in one command"
   homepage "https://github.com/axklim/workenv"
-  # No explicit version: Homebrew derives it from the release asset's
-  # filename below, and stating it too is redundant enough that
-  # `brew audit --strict` rejects it.
+  # No explicit version, and the asset names below are why it is safe to
+  # leave out. Homebrew scans the version from the URL and `brew audit`
+  # rejects stating it as well; but an `…-arm64.tar.gz` suffix gave the scan
+  # a bare "64" to find, which is how a v0.1.1 formula shipped reporting its
+  # version as "64". The platform labels carry no digits, so the version is
+  # the only number in the name and the scan cannot pick the wrong one.
   license "MIT"
 
   depends_on "gh"
@@ -17,19 +20,19 @@ class Workenv < Formula
     depends_on arch: :arm64
 
     on_arm do
-      url "https://github.com/axklim/workenv/releases/download/v0.1.1/workenv-0.1.1-darwin-arm64.tar.gz"
-      sha256 "2bca0cb1038a42aaacd1cdee9b16bae4f5ed10bf930a125373b9e3301914cfe3"
+      url "https://github.com/axklim/workenv/releases/download/v0.1.2/workenv-0.1.2-macos-arm.tar.gz"
+      sha256 "5ef7ebef28bf2520dd8123e6eae5667a4a2f58d3193ebfd6645ae3bffcd15456"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/axklim/workenv/releases/download/v0.1.1/workenv-0.1.1-linux-amd64.tar.gz"
-      sha256 "b8f9adc520c318f52d0111eb5f4fb3c7d2a6ff601e6609bc0fd9c3f2e1111e5c"
+      url "https://github.com/axklim/workenv/releases/download/v0.1.2/workenv-0.1.2-linux-intel.tar.gz"
+      sha256 "e13b907ec273408e4a3c5ec579d69ee9e652f1cc96820ef94cd8f82abdf3155e"
     end
     on_arm do
-      url "https://github.com/axklim/workenv/releases/download/v0.1.1/workenv-0.1.1-linux-arm64.tar.gz"
-      sha256 "7324c26989c1ef995812db33698cc136dda0d9a5b7c76fe1af002068b0db413a"
+      url "https://github.com/axklim/workenv/releases/download/v0.1.2/workenv-0.1.2-linux-arm.tar.gz"
+      sha256 "b15ca98a04e0fcf9ed828dfeb26d6e76d6b05ec8b491657ff6e8a5326fbeaf66"
     end
   end
 
