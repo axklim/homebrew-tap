@@ -4,8 +4,8 @@
 class Flyspace < Formula
   desc "macOS workspace switcher for people who do not tile"
   homepage "https://github.com/axklim/flyspace"
-  url "https://github.com/axklim/flyspace/archive/refs/tags/v0.1.1.tar.gz"
-  sha256 "691c4b914e4f3118b704a5fec607d6dc79bb6b4fe6f56694a3d434b1ee110fa4"
+  url "https://github.com/axklim/flyspace/archive/refs/tags/v0.1.2.tar.gz"
+  sha256 "d10ee077cf60a1a5bcf0eacec0eee73e64aeaa0da76062ecd3bea638c4c997ff"
   license "MIT"
   head "https://github.com/axklim/flyspace.git", branch: "main"
 
@@ -27,7 +27,10 @@ class Flyspace < Formula
 
     prefix.install "build/Flyspace.app"
     bin.install "build/bin/flyspace"
-    # Not in bin: it is a one-off the caveats point at, not a command.
+    # Not in bin: a one-off, not a command. Creates the stable "flyspace-dev"
+    # certificate, which scripts/build.sh signs with instead of ad-hoc whenever
+    # the keychain has one — the alternative to re-approving Accessibility on
+    # every upgrade, for anyone who would rather do it once.
     libexec.install "scripts/make-cert.sh"
   end
 
@@ -53,18 +56,15 @@ class Flyspace < Formula
         flyspace config default > ~/.config/flyspace/config.toml   # edit the bindings
         brew services start flyspace                               # or: flyspace daemon
 
-      macOS ties that grant to the code signature. This formula signs with the
-      self-signed "flyspace-dev" certificate when the keychain has one and
-      ad-hoc when it does not — and an ad-hoc signature is a fresh identity
-      every build, so the next upgrade silently drops the grant. To make it
-      stick, once:
+      macOS ties that grant to the code signature, and each build is signed
+      afresh, so an upgrade drops it. It drops silently: Flyspace keeps showing
+      as enabled in System Settings while no hotkey fires. So on every upgrade:
 
-        #{opt_libexec}/make-cert.sh
-        brew reinstall flyspace
         tccutil reset Accessibility design.flyspace
+        brew upgrade flyspace
+        brew services restart flyspace
 
-      and approve the prompt again. Every upgrade after that is signed with the
-      same certificate and the grant survives it.
+      and approve the prompt again.
 
       If the daemon ever dies with windows parked off-screen, `flyspace rescue`
       pulls them back — it works without the daemon.
