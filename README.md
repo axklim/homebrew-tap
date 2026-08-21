@@ -8,8 +8,9 @@ brew tap axklim/tap
 
 ## Formulae
 
-| Formula                                        | Description                                                     |
-|------------------------------------------------|-----------------------------------------------------------------|
-| [`aerotab`](https://github.com/axklim/aerotab) | Cmd-Tab switcher that never causes an AeroSpace workspace jump  |
-| [`mynah`](https://github.com/axklim/mynah)     | Rate how clearly a message reads, and translate via Claude      |
-| [`workenv`](https://github.com/axklim/workenv) | Open a task's git worktree, tmux session and terminal in one go |
+| Formula                                          | Description                                                     |
+|--------------------------------------------------|-----------------------------------------------------------------|
+| [`aerotab`](https://github.com/axklim/aerotab)   | Cmd-Tab switcher that never causes an AeroSpace workspace jump  |
+| [`flyspace`](https://github.com/axklim/flyspace) | macOS workspace switcher for people who do not tile             |
+| [`mynah`](https://github.com/axklim/mynah)       | Rate how clearly a message reads, and translate via Claude      |
+| [`workenv`](https://github.com/axklim/workenv)   | Open a task's git worktree, tmux session and terminal in one go |
