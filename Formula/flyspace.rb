@@ -4,8 +4,8 @@
 class Flyspace < Formula
   desc "macOS workspace switcher for people who do not tile"
   homepage "https://github.com/axklim/flyspace"
-  url "https://github.com/axklim/flyspace/archive/refs/tags/v0.1.3.tar.gz"
-  sha256 "b71e2811e043d0639a456fbae8c25d500a1b4d704249caa073d2ffc9ab7b2726"
+  url "https://github.com/axklim/flyspace/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "d50b5d6fea2d22648d724cffea956fa54818a9a46d813b43bee37fe740108c27"
   license "MIT"
   head "https://github.com/axklim/flyspace.git", branch: "main"
 
