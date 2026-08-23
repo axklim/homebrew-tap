@@ -2,10 +2,10 @@
 # packaging/flytab.rb.tmpl. Edit it there — the next release overwrites
 # this file.
 class Flytab < Formula
-  desc "Cmd-Tab switcher that never causes an AeroSpace workspace jump"
+  desc "Cmd-Tab switcher that only offers windows flyspace has on screen"
   homepage "https://github.com/axklim/flytab"
-  url "https://github.com/axklim/flytab/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "ecf466ad2e85f57cf6a0cf29f8f94a373f08e21ef0b6bffb2c450435d473849e"
+  url "https://github.com/axklim/flytab/archive/refs/tags/v0.3.0.tar.gz"
+  sha256 "001b4e75042ce4d5fac054728050e99b9d96b3f680cebf4325727507b2b6a737"
   license "MIT"
   head "https://github.com/axklim/flytab.git", branch: "main"
 
@@ -35,8 +35,8 @@ class Flytab < Formula
 
   def caveats
     <<~EOS
-      flytab drives AeroSpace 0.21.0 or newer:
-        brew install --cask nikitabobko/tap/aerospace
+      flytab drives flyspace, which must be installed and running:
+        brew install axklim/tap/flyspace
 
       Start it with:
         brew services start flytab
