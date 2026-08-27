@@ -4,8 +4,8 @@
 class Flytab < Formula
   desc "Cmd-Tab switcher that only offers windows flyspace has on screen"
   homepage "https://github.com/axklim/flytab"
-  url "https://github.com/axklim/flytab/archive/refs/tags/v0.3.0.tar.gz"
-  sha256 "001b4e75042ce4d5fac054728050e99b9d96b3f680cebf4325727507b2b6a737"
+  url "https://github.com/axklim/flytab/archive/refs/tags/v0.4.0.tar.gz"
+  sha256 "bd431d0ac33872f7d199c43341f74122dea21a148777523cecc6c1d9ebbf6f92"
   license "MIT"
   head "https://github.com/axklim/flytab.git", branch: "main"
 
@@ -21,10 +21,14 @@ class Flytab < Formula
     system "scripts/build.sh"
 
     prefix.install "build/Flytab.app"
+    bin.install "build/bin/flytab"
     # Not in bin: it is a one-off the caveats point at, not a command.
     libexec.install "scripts/make-cert.sh"
   end
 
+  # The bundle's own executable, not `flytab daemon`: launchd should own the
+  # process directly, and it is the bundle that carries the identity the
+  # Accessibility grant is attached to. The CLI would only exec this anyway.
   service do
     run opt_prefix/"Flytab.app/Contents/MacOS/flytab"
     keep_alive true
@@ -39,7 +43,7 @@ class Flytab < Formula
         brew install axklim/tap/flyspace
 
       Start it with:
-        brew services start flytab
+        brew services start flytab   # or: flytab daemon
 
       Then grant Accessibility to
         #{opt_prefix}/Flytab.app
@@ -69,5 +73,7 @@ class Flytab < Formula
     # only disagree if the formula points at something other than it claims.
     assert_equal "flytab #{version}",
                  shell_output("#{prefix}/Flytab.app/Contents/MacOS/flytab --version").strip
+    # The CLI is the same binary, and answers before it decides which it is.
+    assert_equal "flytab #{version}", shell_output("#{bin}/flytab version").strip
   end
 end
