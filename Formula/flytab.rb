@@ -4,8 +4,8 @@
 class Flytab < Formula
   desc "Cmd-Tab switcher that only offers windows flyspace has on screen"
   homepage "https://github.com/axklim/flytab"
-  url "https://github.com/axklim/flytab/archive/refs/tags/v0.5.0.tar.gz"
-  sha256 "807c8aac1d1ad8090e0b9a18bcd4d01158043d22b20c062718edadf60062af96"
+  url "https://github.com/axklim/flytab/archive/refs/tags/v0.6.0.tar.gz"
+  sha256 "cbd8fadb164e2b748aa32089a42b202eb7718ff471e831aaea095dfc40aafb54"
   license "MIT"
   head "https://github.com/axklim/flytab.git", branch: "main"
 
