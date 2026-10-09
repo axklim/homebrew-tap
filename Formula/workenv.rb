@@ -20,24 +20,25 @@ class Workenv < Formula
     depends_on arch: :arm64
 
     on_arm do
-      url "https://github.com/axklim/workenv/releases/download/v0.2.1/workenv-0.2.1-macos-arm.tar.gz"
-      sha256 "692f15fd8372ff1b51ea3a5328515bf235dc1c4c3b2487774e0ff0c345de3cc4"
+      url "https://github.com/axklim/workenv/releases/download/v0.2.2/workenv-0.2.2-macos-arm.tar.gz"
+      sha256 "ba736b3f1ae1886b395c97ed1755fd1968c0b3fc01b7fc2316132d3f680f97d1"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/axklim/workenv/releases/download/v0.2.1/workenv-0.2.1-linux-intel.tar.gz"
-      sha256 "ea6f3008db732714d1f7ec99e238e0c5a1b0c964d5ff65fbed30ade18362864b"
+      url "https://github.com/axklim/workenv/releases/download/v0.2.2/workenv-0.2.2-linux-intel.tar.gz"
+      sha256 "152e8ab6292f20f51c6e758fb41634536e2c9ec25d426ebe0883a6378ced5c61"
     end
     on_arm do
-      url "https://github.com/axklim/workenv/releases/download/v0.2.1/workenv-0.2.1-linux-arm.tar.gz"
-      sha256 "84b52a7bdb8f2f2b5e42b33c3f4a43555d8a996607048e09c4b151e988c8429e"
+      url "https://github.com/axklim/workenv/releases/download/v0.2.2/workenv-0.2.2-linux-arm.tar.gz"
+      sha256 "caa2091e1f1d9674849ccc836debad5d2148b96ab2556b3bfec8fcba61198896"
     end
   end
 
   def install
     bin.install "we"
+    pkgshare.install "skills"
   end
 
   def caveats
@@ -52,6 +53,13 @@ class Workenv < Formula
 
       Neither is needed for `we open --no-terminal`, nor on a remote host
       reached with `we --host`.
+
+      The Claude Code skill that teaches a session to drive `we` ships here:
+
+        #{pkgshare}/skills/we
+
+      Link it into ~/.claude/skills/we (or let your dotfiles do it) so the
+      skill always matches the installed version.
     EOS
   end
 
@@ -62,5 +70,6 @@ class Workenv < Formula
 
     # `we` with no arguments exits non-zero, so the usage check uses `help`.
     assert_match "we open", shell_output("#{bin}/we help")
+    assert_path_exists pkgshare/"skills/we/SKILL.md"
   end
 end
