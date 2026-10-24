@@ -20,19 +20,19 @@ class Workenv < Formula
     depends_on arch: :arm64
 
     on_arm do
-      url "https://github.com/axklim/workenv/releases/download/v0.2.4/workenv-0.2.4-macos-arm.tar.gz"
-      sha256 "61210848ce8a9bc5a8e4cf34c65af8d32ead3ed8ac51baad86b5addcdd72b784"
+      url "https://github.com/axklim/workenv/releases/download/v0.3.0/workenv-0.3.0-macos-arm.tar.gz"
+      sha256 "b1879a7e163f176c06525f38d08c937660849e1fe5b4ffe42ba7cb4725f7c11c"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/axklim/workenv/releases/download/v0.2.4/workenv-0.2.4-linux-intel.tar.gz"
-      sha256 "34268ef73d98f8ad9ca9c3d00ec0596b95142a9f51f038a3dfc751766ff397f8"
+      url "https://github.com/axklim/workenv/releases/download/v0.3.0/workenv-0.3.0-linux-intel.tar.gz"
+      sha256 "e2605414757589e077de9c470368c803bbe20ca1456851e18ab4fd1b6c6437e3"
     end
     on_arm do
-      url "https://github.com/axklim/workenv/releases/download/v0.2.4/workenv-0.2.4-linux-arm.tar.gz"
-      sha256 "b0de62e4f5c01ce9252c8614427a576d67029fa8f724532b5c0ecb2f620ae42d"
+      url "https://github.com/axklim/workenv/releases/download/v0.3.0/workenv-0.3.0-linux-arm.tar.gz"
+      sha256 "2678940b84a19d5159325c13e20fe7d99d2891310aa417a662ea78f39550bf91"
     end
   end
 
@@ -54,12 +54,15 @@ class Workenv < Formula
       Neither is needed for `we open --no-terminal`, nor on a remote host
       reached with `we --host`.
 
-      The Claude Code skill that teaches a session to drive `we` ships here:
+      The Claude Code skills that drive `we` (/we, /we-remove, /we-list)
+      ship here:
 
-        #{pkgshare}/skills/we
+        #{pkgshare}/skills
 
-      Link it into ~/.claude/skills/we (or let your dotfiles do it) so the
-      skill always matches the installed version.
+      Link every one into ~/.claude/skills/ (or let your dotfiles do it) so
+      the skills always match the installed version:
+
+        for s in #{pkgshare}/skills/*; do ln -s "$s" ~/.claude/skills/; done
     EOS
   end
 
@@ -70,6 +73,8 @@ class Workenv < Formula
 
     # `we` with no arguments exits non-zero, so the usage check uses `help`.
     assert_match "we open", shell_output("#{bin}/we help")
-    assert_path_exists pkgshare/"skills/we/SKILL.md"
+    %w[we we-remove we-list].each do |skill|
+      assert_path_exists pkgshare/"skills/#{skill}/SKILL.md"
+    end
   end
 end
