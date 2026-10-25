@@ -20,25 +20,24 @@ class Workenv < Formula
     depends_on arch: :arm64
 
     on_arm do
-      url "https://github.com/axklim/workenv/releases/download/v0.3.0/workenv-0.3.0-macos-arm.tar.gz"
-      sha256 "b1879a7e163f176c06525f38d08c937660849e1fe5b4ffe42ba7cb4725f7c11c"
+      url "https://github.com/axklim/workenv/releases/download/v0.4.0/workenv-0.4.0-macos-arm.tar.gz"
+      sha256 "68300e075cce45a7ab197610c2861d9d348d210e3971a3bddbe552e370465429"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/axklim/workenv/releases/download/v0.3.0/workenv-0.3.0-linux-intel.tar.gz"
-      sha256 "e2605414757589e077de9c470368c803bbe20ca1456851e18ab4fd1b6c6437e3"
+      url "https://github.com/axklim/workenv/releases/download/v0.4.0/workenv-0.4.0-linux-intel.tar.gz"
+      sha256 "118c660cc83082a20a82c932440f7500a17ee8246b5d053edb1f3eb1ac364904"
     end
     on_arm do
-      url "https://github.com/axklim/workenv/releases/download/v0.3.0/workenv-0.3.0-linux-arm.tar.gz"
-      sha256 "2678940b84a19d5159325c13e20fe7d99d2891310aa417a662ea78f39550bf91"
+      url "https://github.com/axklim/workenv/releases/download/v0.4.0/workenv-0.4.0-linux-arm.tar.gz"
+      sha256 "d98533dfa4957f711204071c5535845fbd537b3f69e684f7e155483f173f5329"
     end
   end
 
   def install
     bin.install "we"
-    pkgshare.install "skills"
   end
 
   def caveats
@@ -54,15 +53,11 @@ class Workenv < Formula
       Neither is needed for `we open --no-terminal`, nor on a remote host
       reached with `we --host`.
 
-      The Claude Code skills that drive `we` (/we, /we-remove, /we-list)
-      ship here:
+      The Claude Code skills that drive `we` (/workenv:open, /workenv:list,
+      /workenv:close) are a plugin, installed from Claude Code:
 
-        #{pkgshare}/skills
-
-      Link every one into ~/.claude/skills/ (or let your dotfiles do it) so
-      the skills always match the installed version:
-
-        for s in #{pkgshare}/skills/*; do ln -s "$s" ~/.claude/skills/; done
+        claude plugin marketplace add axklim/workenv
+        claude plugin install workenv@workenv
     EOS
   end
 
@@ -73,8 +68,5 @@ class Workenv < Formula
 
     # `we` with no arguments exits non-zero, so the usage check uses `help`.
     assert_match "we open", shell_output("#{bin}/we help")
-    %w[we we-remove we-list].each do |skill|
-      assert_path_exists pkgshare/"skills/#{skill}/SKILL.md"
-    end
   end
 end
