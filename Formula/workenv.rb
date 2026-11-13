@@ -20,19 +20,19 @@ class Workenv < Formula
     depends_on arch: :arm64
 
     on_arm do
-      url "https://github.com/axklim/workenv/releases/download/v0.4.0/workenv-0.4.0-macos-arm.tar.gz"
-      sha256 "68300e075cce45a7ab197610c2861d9d348d210e3971a3bddbe552e370465429"
+      url "https://github.com/axklim/workenv/releases/download/v0.5.0/workenv-0.5.0-macos-arm.tar.gz"
+      sha256 "a0356d34cf82bc14795c5bcccde5a5b448e7f6fa31e66ea0600e301f119b153c"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/axklim/workenv/releases/download/v0.4.0/workenv-0.4.0-linux-intel.tar.gz"
-      sha256 "118c660cc83082a20a82c932440f7500a17ee8246b5d053edb1f3eb1ac364904"
+      url "https://github.com/axklim/workenv/releases/download/v0.5.0/workenv-0.5.0-linux-intel.tar.gz"
+      sha256 "7af823033833b400e83fb134f03baec512963aa9f193e68515cea3a32ffc6101"
     end
     on_arm do
-      url "https://github.com/axklim/workenv/releases/download/v0.4.0/workenv-0.4.0-linux-arm.tar.gz"
-      sha256 "d98533dfa4957f711204071c5535845fbd537b3f69e684f7e155483f173f5329"
+      url "https://github.com/axklim/workenv/releases/download/v0.5.0/workenv-0.5.0-linux-arm.tar.gz"
+      sha256 "6ecbce1a2811c785a5d5b4a154d8d680264e1648e85631c6eb9564d3889181b4"
     end
   end
 
